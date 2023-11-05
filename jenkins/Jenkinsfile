@@ -23,7 +23,7 @@ pipeline {
         }
         stage('Deliver') {
             steps {
-                sh './jenkins/scripts/deliver.sh'
+                deploy adapters: [tomcat9(credentialsId: 'TomcatCreds', path: '', url: 'http://localhost:7080')], contextPath: 'mvnPipeline', war: '**/*.war'
             }
         }
     }
